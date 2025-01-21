@@ -1,6 +1,6 @@
 package com.example.student_managememt.controllers;
 
-import com.example.student_managememt.model.Studend;
+import com.example.student_managememt.model.Student;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -11,27 +11,27 @@ import java.util.List;
 @RequestMapping("/alumnos")
 public class AlumnoController {
 
-    private List<Studend> alumnos = new ArrayList<>(Arrays.asList(
+    private List<Student> alumnos = new ArrayList<>(Arrays.asList(
 
-            new Studend(1, "Juan Perez", "juan@email.com", 20, 1),
-            new Studend(2, "Alejandro Duque", "alejomudu@email.com", 35, 4),
-            new Studend(3, "Catalina Pacheco", "ktik@email.com", 35, 4),
-            new Studend(4, "Luisa Perez", "luisa@email.com", 20, 1)
+            new Student(1, "Juan Perez", "juan@email.com", 20, 1),
+            new Student(2, "Alejandro Duque", "alejomudu@email.com", 35, 4),
+            new Student(3, "Catalina Pacheco", "ktik@email.com", 35, 4),
+            new Student(4, "Luisa Perez", "luisa@email.com", 20, 1)
 
     ));
 
 
     @GetMapping
-    public List<Studend> getAllAlumnos() {
+    public List<Student> getAllAlumnos() {
 
         return alumnos;
 
     }
 
     @GetMapping("/{email}")
-    public Studend getAlumno(@PathVariable String email) {
+    public Student getAlumno(@PathVariable String email) {
 
-        for (Studend a : alumnos) {
+        for (Student a : alumnos) {
 
             if (a.getEmail().equalsIgnoreCase(email)) {
 
@@ -45,7 +45,7 @@ public class AlumnoController {
     }
 
     @PostMapping
-    public Studend postAlumno(@RequestBody Studend alumno) {
+    public Student postAlumno(@RequestBody Student alumno) {
 
         alumnos.add(alumno);
 
@@ -54,16 +54,34 @@ public class AlumnoController {
     }
 
     @PatchMapping
-    public Studend patchAlumno(@RequestBody Studend alumno) {
+    public Student patchAlumno(@RequestBody Student alumno) {
 
-        for (Studend a : alumnos) {
+        for (Student a : alumnos) {
 
             if (a.getId() == alumno.getId()) {
 
-                a.setName(alumno.getName());
-                a.setEmail(alumno.getEmail());
-                a.setAge(alumno.getAge());
-                a.setCurso(alumno.getCurso());
+                if(alumno.getName() != null) {
+
+                    a.setName(alumno.getName());
+
+                }
+
+                if (alumno.getEmail() != null) {
+
+                    a.setEmail(alumno.getEmail());
+
+                }
+
+                if (alumno.getAge() != 0) {
+
+                    a.setAge(alumno.getAge());
+
+                }
+
+                if (alumno.getCurso() != 0) {
+
+                        a.setCurso(alumno.getCurso());
+                }
 
                 return a;
 
@@ -76,9 +94,9 @@ public class AlumnoController {
     }
 
     @PutMapping
-    public Studend putAlumno(@RequestBody Studend alumno){
+    public Student putAlumno(@RequestBody Student alumno){
 
-        for (Studend a : alumnos) {
+        for (Student a : alumnos) {
 
             if (a.getId() == alumno.getId()) {
 
@@ -97,9 +115,9 @@ public class AlumnoController {
     }
 
     @DeleteMapping("/{id}")
-    public Studend borarAlumno(@PathVariable int id) {
+    public Student borarAlumno(@PathVariable int id) {
 
-        for (Studend a : alumnos) {
+        for (Student a : alumnos) {
 
             if (a.getId() == id) {
 

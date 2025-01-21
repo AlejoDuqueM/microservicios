@@ -1,6 +1,6 @@
 package com.example.student_managememt.model;
 
-public class Studend {
+public class Student {
 
     private int id;
 
@@ -12,10 +12,10 @@ public class Studend {
 
     private int curso;
 
-    public Studend() {
+    public Student() {
     }
 
-    public Studend(int id, String name, String email, int age, int curso) {
+    public Student(int id, String name, String email, int age, int curso) {
         this.id = id;
         this.name = name;
         this.email = email;
