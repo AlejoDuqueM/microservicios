@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @RestController
+@RequestMapping("/clientes")
 public class CustomerController {
 
     private List<Customer> customers = new ArrayList<>(Arrays.asList(
@@ -23,19 +24,21 @@ public class CustomerController {
 
     ));
 
-    @GetMapping("/clientes")
+    //@RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     public List<Customer> getAllCustomers() {
 
         return customers;
 
     }
 
-    @GetMapping("/clientes/{username}")
+    //@RequestMapping(value = "/{username}", method = RequestMethod.GET)
+    @GetMapping("/{username}")
     public Customer getCustomers(@PathVariable String username) {
 
-        for(Customer c : customers) {
+        for (Customer c : customers) {
 
-            if(c.getUsername().equalsIgnoreCase(username)) {
+            if (c.getUsername().equalsIgnoreCase(username)) {
 
                 return c;
 
@@ -46,7 +49,8 @@ public class CustomerController {
         return null;
     }
 
-    @PostMapping("/clientes")
+    //@RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     public Customer postCustomer(@RequestBody Customer customer) {
 
         customers.add(customer);
@@ -60,7 +64,8 @@ public class CustomerController {
      * @param customer
      * @return
      */
-    @PutMapping("/clientes")
+    //@RequestMapping(method = RequestMethod.PUT)
+    @PutMapping
     public Customer putCustomer(@RequestBody Customer customer) {
 
         for(Customer c : customers) {
@@ -83,7 +88,8 @@ public class CustomerController {
 
     }
 
-    @DeleteMapping("/clientes/{id}")
+    //@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping("/{id}")
     public Customer deleteCustomer(@PathVariable int id) {
 
         for(Customer c : customers) {
@@ -106,7 +112,9 @@ public class CustomerController {
      * PATCH /clientes/{id} actualiza parcialmente un cliente
      * Request body recibe parametros tipo JSON
      */
-    @PatchMapping("/clientes")
+
+    //@RequestMapping(method = RequestMethod.PATCH)
+    @PatchMapping
     public Customer patchCustomer(@RequestBody Customer customer) {
 
         for(Customer c : customers) {
