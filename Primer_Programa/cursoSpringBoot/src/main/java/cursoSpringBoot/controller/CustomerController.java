@@ -55,6 +55,11 @@ public class CustomerController {
 
     }
 
+    /**
+     * PUT /clientes actualiza completamente un cliente
+     * @param customer
+     * @return
+     */
     @PutMapping("/clientes")
     public Customer putCustomer(@RequestBody Customer customer) {
 
@@ -86,6 +91,45 @@ public class CustomerController {
             if(c.getId() == id) {
 
                 customers.remove(c);
+
+                return c;
+
+            }
+
+        }
+
+        return null;
+
+    }
+
+    /**
+     * PATCH /clientes/{id} actualiza parcialmente un cliente
+     * Request body recibe parametros tipo JSON
+     */
+    @PatchMapping("/clientes")
+    public Customer patchCustomer(@RequestBody Customer customer) {
+
+        for(Customer c : customers) {
+
+            if(c.getId() == customer.getId()) {
+
+                if(customer.getName() != null) {
+
+                    c.setName(customer.getName());
+
+                }
+
+                if(customer.getUsername() != null) {
+
+                    c.setUsername(customer.getUsername());
+
+                }
+
+                if(customer.getPassword() != null) {
+
+                    c.setPassword(customer.getPassword());
+
+                }
 
                 return c;
 
