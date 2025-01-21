@@ -100,7 +100,8 @@ public class CustomerController {
                 c.setPassword(customer.getPassword());
 
                 //return c;
-                return ResponseEntity.ok("El cliente fue actualizado correctamente: " + customer.getId());
+                //return ResponseEntity.ok("El cliente fue actualizado correctamente: " + customer.getId());
+                return ResponseEntity.noContent().build();
 
             }
 
@@ -108,7 +109,8 @@ public class CustomerController {
 
 
         //return null;
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El cliente no fue encontrado: " + customer.getId());
+        //return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El cliente no fue encontrado: " + customer.getId());
+        return ResponseEntity.notFound().build();
     }
 
     //@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
@@ -123,15 +125,18 @@ public class CustomerController {
                 customers.remove(c);
 
                 //return c;
-                return ResponseEntity.status(HttpStatus.NO_CONTENT)
-                        .body("El cliente fue eliminado correctamente: " + id);
+                /*return ResponseEntity.status(HttpStatus.NO_CONTENT)
+                        .body("El cliente fue eliminado correctamente: " + id);*/
+
+                return ResponseEntity.noContent().build();
 
             }
 
         }
 
         //return null;
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El cliente no fue encontrado: " + id);
+        //return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El cliente no fue encontrado: " + id);
+        return ResponseEntity.notFound().build();
 
     }
 
