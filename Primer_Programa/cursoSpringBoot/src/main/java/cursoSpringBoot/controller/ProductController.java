@@ -1,5 +1,6 @@
 package cursoSpringBoot.controller;
 
+import cursoSpringBoot.configurations.ExternalizedConfiguration;
 import cursoSpringBoot.model.Product;
 import cursoSpringBoot.service.IProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,13 @@ public class ProductController {
     //@Qualifier("listResourceService")           //esto se usa para identificar el servicio a inyectar con @Qualifier
     private IProductsService productsService;   //esto es composicion
 
+    @Autowired
+    private ExternalizedConfiguration externalizedConfiguration;
+
     @GetMapping
     public ResponseEntity<?> getAllProducts() {
+
+        System.out.println(externalizedConfiguration.toString());
 
         List<Product> products = productsService.getAllProducts();
 
