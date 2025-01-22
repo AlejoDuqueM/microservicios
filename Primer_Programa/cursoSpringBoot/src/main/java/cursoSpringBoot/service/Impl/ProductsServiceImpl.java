@@ -2,14 +2,22 @@ package cursoSpringBoot.service.Impl;
 
 import cursoSpringBoot.model.Product;
 import cursoSpringBoot.service.IProductsService;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@Service("listResourceService")  //esto se usa para identificar el servicio a inyectar con @Qualifier
+@Lazy
+@Service//("listResourceService")  //esto se usa para identificar el servicio a inyectar con @Qualifier
+@ConditionalOnProperty(name = "service.products", havingValue = "list")
 public class ProductsServiceImpl implements IProductsService {
+
+    public ProductsServiceImpl(){
+        System.out.println("Instancia de la clase ProductsServiceImpl");
+    }
 
     List<Product> products = new ArrayList<>(Arrays.asList(
 

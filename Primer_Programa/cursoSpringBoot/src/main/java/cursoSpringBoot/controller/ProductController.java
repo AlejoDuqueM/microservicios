@@ -4,6 +4,7 @@ import cursoSpringBoot.model.Product;
 import cursoSpringBoot.service.IProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +22,8 @@ public class ProductController {
 
     //Inyeccion de dependencias por campo
     @Autowired
-    @Qualifier("listResourceService")           //esto se usa para identificar el servicio a inyectar con @Qualifier
+    @Lazy
+    //@Qualifier("listResourceService")           //esto se usa para identificar el servicio a inyectar con @Qualifier
     private IProductsService productsService;   //esto es composicion
 
     @GetMapping

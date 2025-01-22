@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import cursoSpringBoot.model.Product;
 import cursoSpringBoot.service.IProductsService;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,8 @@ import java.util.List;
 //que esta es la implementacion por defecto de la interfaz
 //Esta clase lee desde el archivo products.json
 @Primary
-@Service("jsonResourceService")  //esto se usa para identificar el servicio a inyectar con @Qualifier
+@Service//("jsonResourceService")  //esto se usa para identificar el servicio a inyectar con @Qualifier
+@ConditionalOnProperty(name = "service.products", havingValue = "json")
 public class ProductsServiceJSONImpl implements IProductsService {
 
 
