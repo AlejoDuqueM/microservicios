@@ -14,7 +14,7 @@ import java.util.List;
 //que esta es la implementacion por defecto de la interfaz
 //Esta clase lee desde el archivo products.json
 @Primary
-@Service
+@Service("jsonResourceService")  //esto se usa para identificar el servicio a inyectar con @Qualifier
 public class ProductsServiceJSONImpl implements IProductsService {
 
 

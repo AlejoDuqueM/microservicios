@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@Service
+@Service("listResourceService")  //esto se usa para identificar el servicio a inyectar con @Qualifier
 public class ProductsServiceImpl implements IProductsService {
 
     List<Product> products = new ArrayList<>(Arrays.asList(
