@@ -5,7 +5,9 @@ import cursoSpringBoot.model.Customer;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -75,8 +77,15 @@ public class CustomerController {
 
         customers.add(customer);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body("El cliente fue creado correctamente: " + customer.getUsername());
+        //return ResponseEntity.status(HttpStatus.CREATED).body("El cliente fue creado correctamente: " + customer.getUsername());
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{username}")
+                .buildAndExpand(customer.getUsername())
+                .toUri();
 
+        //return ResponseEntity.created(location).build();
+        return ResponseEntity.created(location).body(customer);
     }
 
     /**
@@ -171,7 +180,7 @@ public class CustomerController {
 
                 }
 
-                return ResponseEntity.ok("El cliente fue actualizado correctamente: " + customer.getUsername());
+                return ResponseEntity.ok("El cliente fue actualizado correctamente: " + customer.getName());
 
             }
 
