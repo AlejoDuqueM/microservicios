@@ -1,0 +1,26 @@
+#version: "3.9"
+
+#services:
+#  chanchito:
+#    build: .
+#    ports:
+#      - "5000:5000"
+#    links:
+#      - monguito
+#  monguito:
+#    image: mongo
+#    ports:
+#      - "27017:27017"
+#    environment:
+#      MONGO_INITDB_ROOT_USERNAME: root
+#      MONGO_INITDB_ROOT_PASSWORD: example
+
+services:
+  mi-aplicacion:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mi-aplicacion-spring-boot
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
