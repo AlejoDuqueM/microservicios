@@ -24,7 +24,7 @@ public class CustomerController {
 
     }
 
-    @GetMapping("/clientes/{username}")
+    @GetMapping("/clientes/{username_}")
     public Customer getCustomerById(@PathVariable String username_) {
 
         for(Customer c : customers) {
@@ -51,8 +51,78 @@ public class CustomerController {
 
     }
 
+    @PutMapping("/clientes")
+    public Customer putCliente(@RequestBody Customer custumerput){
+
+        for (Customer c: customers){
+
+           if(c.getId() == custumerput.getId()){
+
+               c.setName(custumerput.getName());
+               c.setUsername(custumerput.getUsername());
+               c.setPassword(custumerput.getPassword());
+
+               return c;
+           }
+
+        }
+
+        return null;
+
+    }
+
+    @DeleteMapping("clientes/{id}")
+    public Customer delCliente(@PathVariable int id){
+
+        for (Customer c: customers) {
+
+            if(c.getId() == id){
+
+                customers.remove(c);
+
+                return c;
+
+            }
+
+        }
+
+        return null;
+
+    }
+
+    @PatchMapping("/clientes")
+    public Customer patchCliente(@RequestBody Customer customerpath){
+
+        for(Customer c: customers){
+
+            if(c.getId() == customerpath.getId()){
+
+                if(customerpath.getName() != null){
+
+                    c.setName(customerpath.getName());
+
+                }
+                if(customerpath.getUsername() != null){
+
+                    c.setUsername(customerpath.getUsername());
+
+                }
+                if(customerpath.getPassword() != null){
+
+                    c.setPassword(customerpath.getPassword());
+
+                }
+
+                return c;
+
+            }
 
 
+        }
+
+        return null;
+
+    }
 
 
 
