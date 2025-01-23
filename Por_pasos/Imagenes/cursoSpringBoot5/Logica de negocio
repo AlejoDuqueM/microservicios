@@ -1,0 +1,9 @@
+Capa logicade negocio
+
+    hace referencia a los paquetes 
+        
+        Domain
+        Exceptions
+        Service             Los servicios son responsables de implementar las reglas de negocio, realizar calculos
+                            Validar datos y coordinar las operaciones necesarias para cumplir con los requisitos
+                            del negocio
