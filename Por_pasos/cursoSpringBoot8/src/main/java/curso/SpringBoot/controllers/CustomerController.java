@@ -19,14 +19,14 @@ public class CustomerController {
             new Customer(4, "Jose", "jose", "1234")
     ));
 
-    @GetMapping
+    @RequestMapping(method = RequestMethod.GET)
     public List<Customer> getAllCustomers() {
 
         return customers;
 
     }
 
-    @GetMapping("/{username_}")
+    @RequestMapping(value = "/{username_}", method = RequestMethod.GET)
     public Customer getCustomerById(@PathVariable String username_) {
 
         for(Customer c : customers) {
@@ -44,7 +44,7 @@ public class CustomerController {
     }
 
 
-    @PostMapping
+    @RequestMapping(method = RequestMethod.POST)
     public Customer postCliente(@RequestBody Customer customervar){
 
         customers.add(customervar);
@@ -53,7 +53,7 @@ public class CustomerController {
 
     }
 
-    @PutMapping
+    @RequestMapping(method = RequestMethod.PUT)
     public Customer putCliente(@RequestBody Customer custumerput){
 
         for (Customer c: customers){
@@ -73,7 +73,7 @@ public class CustomerController {
 
     }
 
-    @DeleteMapping("/{id}")
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public Customer delCliente(@PathVariable int id){
 
         for (Customer c: customers) {
@@ -92,7 +92,7 @@ public class CustomerController {
 
     }
 
-    @PatchMapping
+    @RequestMapping(method = RequestMethod.PATCH)
     public Customer patchCliente(@RequestBody Customer customerpath){
 
         for(Customer c: customers){
