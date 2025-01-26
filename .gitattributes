@@ -1,0 +1,5 @@
+# Normalizar saltos de línea para archivos de texto
+* text=auto
+
+# Especificar que los archivos .java deben usar LF
+*.java text eol=lf
