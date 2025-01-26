@@ -1,0 +1,21 @@
+El principal objetivo de la inyeccion de dependecias es evitar el alto acoplamiento.
+
+Nuestro controlador y nuestro servicio estan fuertemente acopladas.
+Porque se esta usando la instancia de clase, y no es lo correcto.
+
+Se deberia usar la inyeccion de dependencias.
+
+
+Para hacer eso, hay que dirigirse a la clase ProductsServiceImpl y la decoramos
+con la anotacion @Service, esa anotacion le indica a Spring que eso es un @Bean.
+Se acaba de convertir en un Bean de servicio.
+
+Y lo que hace Spring es que lo almacena en su contenedor..,
+
+
+....
+
+Al crear un Bean de servicio con  @Service, basicamente Spring ya sabe que tengo un servicio implementado. Y cuando hago una inyeccion de dependencias, lo que automaticamente hace Sprin es buscar en su contenedor de inversion de control, esa instancia (interfaz) y el nombre que pueda coincidir con algo de Service Implement, y es precisamente la implementacion. Aunque yo lo que estoy haciendo es inyectando la dependencia de la interfaz, lo que realmente hace es implementar el servicio. Porque en servicio es donde esta decorada la clase.
+
+
+Es en Servicio donde se crea el comportamiento del metodo abstracto.

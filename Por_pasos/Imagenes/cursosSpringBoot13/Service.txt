@@ -1,0 +1,46 @@
+Creamos el paquete service. Este paquete representa nuestra capa de servicios.
+	
+	Dentro de dicho paquete creamos una nueva clase, (ProductsServiceImpl)
+	dentro de dicha clase va la logica.
+	
+Creamos dentro del paquete model la clase Product que va a tener los atributos, getters and setters y constructores. Esta clase es la que va a recibir todos los valores e informacion de todos los productos.
+
+Es mejor usar tipos de datos referenciales que primitivos, pues nos permite manejar de manera correcta los valores nulos.
+
+Despues vamos a la clase que tendra nuestro servicio, es decir la que se va a encargar de ser el servicio (ProductServiceImpl), la que tiene el sufijo Impl.
+Ahi va toda la logica del servicio.
+
+	Vamos a crear una lista, con el tipo de datos que va a contener la lista, 			 que en estos casos es la clase Product. despues se asigna un nombre a la lista, y despues se inicializa haciendo llamado al constructor de la clase ArrayList, despues llamamos a la clase Arrays con el metodo asList.
+	
+Ahora empezamos a generar nuestros productos con el llamado al constructor 
+new Product(),
+
+Toda la logica debe estar dentro del servicio, 
+
+public List<Product> gatAllProducts(){
+	
+	return products;
+
+}
+
+Despues creamos el controlador en nuestra capa controller
+
+creamos la clase ProductController, en la anotacion @RestController y @RequestMapping
+
+despues generamos un objeto o instancia entre clases:
+
+	ProductsServicesImpl productsService = new ProductsServicesImpl();
+	
+	Despues creamos el metodo 
+	
+	@GetMapping
+	public ResponseEntity<?> getAllProducts(){
+	
+		List<Product> products = productsService.getAllProducts();
+		
+		return ResponseEntity.ok(products).body()
+	
+	}
+	
+	
+La capa de servicio encapsula la logica de negocios de la aplicacion, lo cual permite mantener una separacion clara de responsabilidades, facilitando ,a escalabilidad, mantenimiento y reutilizacion de codigo.
